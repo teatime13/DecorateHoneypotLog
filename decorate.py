@@ -9,7 +9,7 @@ class Printdict(dict):
     def decorate():
         pass
 
-class Urlclass(Printdict):
+class Requestclass(Printdict):
     def decorate(self, k):
         print("-" * 30)
         print(k + "  :   " + str(self[k]))
@@ -19,9 +19,10 @@ class Numclass(Printdict):
         print("{:5}".format(k) + "  :  " + str(self[k]))
 
 def main():
-    urldict = Urlclass()
+    requestdict = Requestclass()
     numdict = Numclass()
-    path = "/var/log/wowhoneypot/access_log"
+    #path = "/var/log/wowhoneypot/access_log"
+    path = "access_log"
     
     with open(path) as file:
         for f in file:
@@ -31,12 +32,19 @@ def main():
             print(base64.b64decode(s[-1]))
             print("=" * 60)
             num = s[-2]
+            req = s[0] + " " + s[1]
+            
             if num in numdict:
                 numdict[num] = numdict[num] + 1
             else:
                 numdict[num] = 1
+            
+            if request in requestdict:
+                requestdict[req] = requestdict[req] + 1
+            else:
+                requestdict[req] = 1
 
-    urldict.print()
+    requestdict.print()
     numdict.print()
 
 def printlist(list_data):
