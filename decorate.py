@@ -21,8 +21,7 @@ class Numclass(Printdict):
 def main():
     requestdict = Requestclass()
     numdict = Numclass()
-    #path = "/var/log/wowhoneypot/access_log"
-    path = "access_log"
+    path = "/var/log/wowhoneypot/access_log"
     
     with open(path) as file:
         for f in file:
@@ -39,7 +38,7 @@ def main():
             else:
                 numdict[num] = 1
             
-            if request in requestdict:
+            if req in requestdict:
                 requestdict[req] = requestdict[req] + 1
             else:
                 requestdict[req] = 1
