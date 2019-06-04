@@ -31,7 +31,7 @@ def main():
             print(base64.b64decode(s[-1]))
             print("=" * 60)
             num = s[-2]
-            req = s[0] + " " + s[1]
+            req = s[4][1:] + " " + s[5]
             
             if num in numdict:
                 numdict[num] = numdict[num] + 1
